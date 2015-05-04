@@ -14,3 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//=require linkurious/sigma.require.js
+//=require linkurious/plugins/sigma.parsers.gexf.min.js
+//=require linkurious/plugins/sigma.plugins.locate.min.js
