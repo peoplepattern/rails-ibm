@@ -117,12 +117,12 @@ input[type=range] {
               }
             }
           }
-          .interest {
+          .interest, .taxonomy {
             padding: 4px 6px;
             margin-left: 5px;
-            background-color: #aaa;
+            background-color: #ACD1EB;
             border-radius: 3px;
-            border: 1px solid #999;
+            border: 1px solid #174566;
             line-height: 3.3em;
           }
         }
@@ -131,6 +131,25 @@ input[type=range] {
   }
 }
 
+// smallSummary styles
+.smallSummary {
+  height: 30%;
+  min-height: 300px;
+  width: 20%;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 4px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #eee;
+  -webkit-box-shadow: -1px 2px 12px 0px rgba(122,122,122,1);
+  -moz-box-shadow: -1px 2px 12px 0px rgba(122,122,122,1);
+  box-shadow: -1px 2px 12px 0px rgba(122,122,122,1);
+}
+
+
+// global utility classes
 .caps {
   text-transform: uppercase;
 }

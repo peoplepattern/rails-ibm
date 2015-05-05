@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require ./jquery.timeago.js
 //= require ./angular.min
+//= require ./angular-sanitize.min
 //= require_tree .
 
 //=require linkurious/sigma.require.js

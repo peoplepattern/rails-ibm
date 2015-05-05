@@ -13,6 +13,7 @@ class Page
   property :'extensions.favorites'
   property :'extensions.screenName'
   property :'extensions.followers'
+  property :'extensions.posts'
   
   def self.mapped_label_name
     'page'
@@ -42,6 +43,10 @@ class Page
     self.attributes['extensions.followers']
   end
 
+  def posts
+    self.attributes['extensions.posts']
+  end
+
   def to_node
     {
       displayName: self.display_name,
@@ -57,6 +62,7 @@ class Page
         favorites: self.favorites,
         screenName: self.screen_name,
         followers: self.followers_count,
+        posts: self.posts,
       },
       objectType: "page",
       url: self.url,

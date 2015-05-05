@@ -14,9 +14,22 @@ class WelcomeController < ApplicationController
     
     watson.followers.limit(50).each do |follower|
       data[:nodes].push(follower.to_node)
-      data[:edges].push({source: watson.id, target: follower.id, id: "#{watson.id}:#{follower.id}"})
+      data[:edges].push({
+        source: follower.id,
+        target: watson.id,
+        id: "#{watson.id}:#{follower.id}",
+        type: 'arrow',
+        color: '#c7c39d',
+        hover_color: '#9dc7c3',
+        size: 3
+      })
     end
 
     render json: data
+  end
+
+  def posts
+    posts = Post.find_by_unique_id(params[:id])
+    render json: posts
   end
 end

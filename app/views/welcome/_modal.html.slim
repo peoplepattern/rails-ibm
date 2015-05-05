@@ -1,4 +1,10 @@
 div(ng-app="personModal")
+  .smallSummary(ng-controller="SmallSummaryController as ssCtrl" ng-show="ssCtrl.person.displayName != undefined")
+    img(ng-src="{{ssCtrl.person.image.url | bigPic}}")
+    p.displayName() {{ssCtrl.person.displayName}}
+    p.followersAndPosts() {{ssCtrl.person.extensions.followers}} followers | {{ssCtrl.person.extensions.posts}} posts
+    p.location() {{ssCtrl.person.location}}
+    p.url() {{ssCtrl.person.url}}
   .modal.fade(ng-controller="PersonModalController as pmCtrl" id="personModal" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true")
     .modal-dialog(ng-toggler)
       .modal-content
@@ -21,7 +27,7 @@ div(ng-app="personModal")
                 p.caps.center-text.m-top() Followers
                 p.center-text.bold() {{pmCtrl.person.extensions.followers}}
             p.summary() {{pmCtrl.person.summary}}
-            p.location() 
+            p.location(ng-show="pmCtrl.person.extensions.location") 
               span.glyphicon.glyphicon-map-marker(style="margin-right: 5px;")
               | {{pmCtrl.person.extensions.location}}
             p.url
@@ -35,8 +41,12 @@ div(ng-app="personModal")
             div.tab-content
               div.tab-pane.fade.in.active(role="tabpanel" id="posts")
                 .post(ng-repeat="post in pmCtrl.posts")
-                  p.date() {{post.published}}
-                  p() {{post.content}}
+                  abbr.date.timeago(title="{{post.published}}") {{post.published}}
+                  p(ng-bind-html="post.content | links") 
+                  div()
+                    span.glyphicon.glyphicon-retweet(style="color: #ccd6dd; margin-right: 5px; width: 20px;") 
+                    | {{post.extensions.twitter.retweet_count}}
+                    span.taxonomy(ng-show="post.extensions.taxonomy.taxonomy[0]" title="{{post.extensions.taxonomy.taxonomy[0].score}}") {{post.extensions.taxonomy.taxonomy[0].label | taxonomy}}
               div.tab-pane.fade(role="tabpanel" id="interests")
                 span.interest(ng-repeat="interest in pmCtrl.interests" style="{{'background-color: '+interest.color}}")
                   | {{interest.title}}
