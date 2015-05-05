@@ -69,14 +69,53 @@ input[type=range] {
       text-align: center;
     }
     .modal-body {
-      height: 300px;
-      img {
-        border-radius: 5px;
-        border: 1px solid #aaa;
-        height: 200px;
-        width: 200px;
-        margin-left: 14px;
-        float: right;
+      .basicInfo {
+        height: 250px;
+        img {
+          border-radius: 5px;
+          border: 1px solid #aaa;
+          height: 200px;
+          width: 200px;
+          margin-left: 14px;
+          float: right;
+        }
+        p.summary {
+          color: #555;
+        }
+      }
+      .details {
+        #posts {
+          max-height: 200px;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        .tab-pane {
+          border: 1px solid #ddd;
+          border-top: 0;
+          .post {
+            padding: 10px;
+            &:hover {
+              background-color: #f5f8fa;
+            }
+            p {
+              margin-bottom: 0;
+            }
+            p.date {
+              color: #8899a6;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+          .interest {
+            padding: 4px 6px;
+            margin-left: 5px;
+            background-color: #aaa;
+            border-radius: 3px;
+            border: 1px solid #999;
+            line-height: 3.3em;
+          }
+        }
       }
     }
   }
