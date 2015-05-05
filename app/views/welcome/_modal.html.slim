@@ -1,10 +1,13 @@
 div(ng-app="personModal")
   .smallSummary(ng-controller="SmallSummaryController as ssCtrl" ng-show="ssCtrl.person.displayName != undefined")
     img(ng-src="{{ssCtrl.person.image.url | bigPic}}")
-    p.displayName() {{ssCtrl.person.displayName}}
-    p.followersAndPosts() {{ssCtrl.person.extensions.followers}} followers | {{ssCtrl.person.extensions.posts}} posts
+    h4.displayName() {{ssCtrl.person.displayName}}
+    p.followersAndPosts() 
+      | {{ssCtrl.person.extensions.followers}} followers 
+      span.float-right() {{ssCtrl.person.extensions.posts}} posts
     p.location() {{ssCtrl.person.location}}
-    p.url() {{ssCtrl.person.url}}
+    p.url() 
+      a(href="{{ssCtrl.person.url}}") {{ssCtrl.person.url}}
   .modal.fade(ng-controller="PersonModalController as pmCtrl" id="personModal" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true")
     .modal-dialog(ng-toggler)
       .modal-content

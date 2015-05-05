@@ -2,6 +2,7 @@ class Page
   include Neo4j::ActiveNode
 
   has_many :in, :followers, type: 'follow', class_name: 'Page', model_class: 'Page'
+  has_many :out, :friends, type: 'follow', class_name: 'Page', model_class: 'Page'
 
   id_property :id
   property :displayName
