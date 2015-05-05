@@ -114,6 +114,10 @@ sigma.parsers.json(
 	   gravity: 3,
 	   easing: 'cubicInOut'
 	 });
-   });
-</script>
+ });
 
+s.bind('clickNode', function(e) {
+  console.log(e.type, e.data.node.label, e.data.captor, e);
+  angular.element.event.trigger({type:"show.person", person: e.data.node});
+});
+</script>

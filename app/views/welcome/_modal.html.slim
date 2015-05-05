@@ -5,9 +5,11 @@ div(ng-app="personModal")
         .modal-header
           button(type="button" class="close" data-dismiss="modal" aria-label="Close")
             span(aria-hidden="true") &times;
-          h4.modal-title(id="personModalLabel") {{pmCtrl.person.name}}
+          h4.modal-title(id="personModalLabel") 
+            a(href="http://www.twitter.com/{{pmCtrl.person.handle}}" target="_blank") {{pmCtrl.person.displayName}}
         .modal-body
-          Content
+          img(ng-src="{{pmCtrl.person.image.url}}")
+          p() {{pmCtrl.person.summary}}
         .modal-footer
           button(type="button" class="btn btn-default" data-dismiss="modal") Close
-          button(type="button" class="btn btn-primary") Save changes
+          / button(type="button" class="btn btn-primary") Save changes
