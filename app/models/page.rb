@@ -67,6 +67,7 @@ class Page
       },
       objectType: "page",
       url: self.url,
+      influence: Influence.score(self.id),
     }
   end
 end
