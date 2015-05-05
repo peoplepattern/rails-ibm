@@ -6,13 +6,6 @@
  * This is an example on how to use sigma locate plugin on a real-world graph.
  */
 
-/**
- * DOM utility function
- */
-var $ = function (id) {
-  return document.getElementById(id);
-};
-
  var g = {
    nodes: [],
    edges: []
@@ -33,6 +26,12 @@ var $ = function (id) {
      maxEdgeSize: 4,
      edgeHoverSizeRatio: 1,
      edgeHoverExtremities: true,
+     nodeActiveColor: 'default',
+     borderSize: 2,
+     outerBorderSize: 1,
+     defaultNodeBorderColor: '#fff',
+     nodeBorderColor: 'default',
+     defaultNodeOuterBorderColor: 'rgb(236, 81, 72)',
    }
  });
  
@@ -46,12 +45,14 @@ var $ = function (id) {
 	   nodes[i].y = 100 * Math.sin(2 * i * Math.PI / nodes.length);
 	   nodes[i].size = nodes[i].size;
 	   nodes[i].color = '#C39DC7';
+     nodes[i].active = false;
 	 }
 
 	 for (var i = 0; i < s.graph.edges.length; i++) {
 	   s.graph.edges[i].color = '#444';
 	   s.graph.edges[i].hover_color = '#ccc';
 	   s.graph.edges[i].size = 3;
+     s.graph.edges[i].active = false;
 	 }
 
 	 s.refresh();
@@ -65,10 +66,28 @@ var $ = function (id) {
 	 });
  });
 
+// the ActiveState plugin:
+var activeState = sigma.plugins.activeState(s);
+
 s.bind('clickNode', function(e) {
   angular.element.event.trigger({type:"show.person", person: e.data.node});
 });
 s.bind('overNode', function(e) {
+  var ns = [], nodes = s.graph.nodes();
+  activeState.dropNodes();
+  activeState.dropEdges();
+  activeState.setEdgesBy(function(edge){
+    if(edge.startColor == undefined)
+      edge.startColor = edge.color;
+    if(edge.source == e.data.node.id){
+      edge.color = 'blue';
+      return true;
+    } else
+      edge.color = edge.startColor;
+      return false;
+  });
   angular.element.event.trigger({type:"show.person.small", person: e.data.node});
+  s.refresh({skipIndexation: true});
 });
+
 </script>
