@@ -17,12 +17,12 @@
   function PersonModalController($scope, $http){
     var vm = this;
     vm.person = {};
-    vm.posts = [{content: "blah"},{content: "blah2"}];
-    vm.interests = [{title: "sports"},{title: "stuff"}];
+    vm.posts = [];
+    vm.interests = [];
+    vm.getEntity = getEntity;
     activate();
 
     function activate(){
-      color('interests');
       angular.element(document).on('show.person', function(e){ //show.person events must contain 'person' field with necessary sub-data
         $scope.$applyAsync(function(){
           vm.person = e.person;
@@ -67,6 +67,17 @@
         else
           vm[name][i].color = '#D48A8A';
       }
+    }
+
+    function getEntity(post) {
+      var obj = {};
+      if (post.extensions.entities.entities) {
+        for(var i=0; i<post.extenstions.entities.entities.length; i++) {
+          if (post.extenstions.entities.entities[i].disambiguated)
+            return post.extenstions.entities.entities[i];
+        }
+      }
+      return obj;
     }
   };
 

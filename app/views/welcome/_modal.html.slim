@@ -66,6 +66,7 @@ div(ng-app="personModal")
                     span.glyphicon.glyphicon-retweet(style="color: #ccd6dd; margin-right: 5px; width: 20px;") 
                     | {{post.extensions.twitter.retweet_count}}
                     span.taxonomy(ng-show="post.extensions.taxonomy.taxonomy[0]" title="{{post.extensions.taxonomy.taxonomy[0].score}}") {{post.extensions.taxonomy.taxonomy[0].label | taxonomy}}
+                    span.interest(ng-class="{positive: post.extensions.alchemykeywords.keywords[0].sentiment.type == 'positive', negative: post.extensions.alchemykeywords.keywords[0].sentiment.type == 'negative', neutral: post.extensions.alchemykeywords.keywords[0].sentiment.type == 'neutral'}" ng-show="post.extensions.alchemykeywords.keywords[0]") {{post.extensions.alchemykeywords.keywords[0].text}}
               div.tab-pane.fade(role="tabpanel" id="keywords")
                 div(ng-repeat="keyword in pmCtrl.keywords")
                   span.interest(ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral', 'float-left': $even, 'float-right': $odd}")
