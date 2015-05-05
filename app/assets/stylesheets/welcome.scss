@@ -68,6 +68,10 @@ input[type=range] {
   .modal-dialog {
     .modal-header {
       text-align: center;
+
+	  .label-success {
+	    margin-left: 10px;
+	  }				 
     }
     .modal-body {
       .basicInfo {

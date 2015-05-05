@@ -29,6 +29,7 @@ div(ng-app="personModal")
             span(aria-hidden="true") &times;
           h3.modal-title(id="personModalLabel") 
             a(href="http://www.twitter.com/{{pmCtrl.person.handle}}" target="_blank") {{pmCtrl.person.displayName}}
+            span(class="label label-success" ng-show="pmCtrl.person.influence != 0") {{pmCtrl.person.influence}}
         .modal-body
           .basicInfo
             .picHolder
