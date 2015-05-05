@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   def index
   end
 
@@ -46,6 +47,10 @@ class WelcomeController < ApplicationController
   end
 
   def population
-    render json: Post.aggs
+    if params[:ids]
+      render json: Post.aggs(params[:ids])
+    else
+      render json: Post.aggs
+    end
   end
 end

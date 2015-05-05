@@ -56,7 +56,7 @@ class Page
       size: Math.log(self.followers_count),
       tid: self.id,
       summary: self.summary,
-      image: {url: self.image_url},
+      img: {url: self.image_url},
       handle: self.screen_name,
       extensions: {
         location: self.location,

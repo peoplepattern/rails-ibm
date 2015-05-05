@@ -10,9 +10,13 @@ class Post
     return self.parse_list(self.request(blob))
   end
 
-  def self.aggs()
+  def self.aggs(ids=nil)
     blob = OPTIONS
-    blob[:body] = {query:{match_all: {}},sort: {published: {order: "desc"}}}
+    if ids
+      blob[:body] = {query:{terms: {"actor.id" => ids.map{|id| id.gsub("id:twitter:","")} }},sort: {published: {order: "desc"}}, size: 0}
+    else
+      blob[:body] = {query:{match_all: {}},sort: {published: {order: "desc"}}}
+    end
     blob = self.apply_keywords_agg(blob)
     blob = self.apply_entities_agg(blob)
     return self.parse_list(self.request(blob))

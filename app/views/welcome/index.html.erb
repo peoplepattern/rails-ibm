@@ -32,6 +32,7 @@
      defaultNodeBorderColor: '#fff',
      nodeBorderColor: 'default',
      defaultNodeOuterBorderColor: 'rgb(236, 81, 72)',
+     imageThreshhold: 0,
    }
  });
  
@@ -66,26 +67,36 @@
 
 // the ActiveState plugin:
 var activeState = sigma.plugins.activeState(s);
+var isShift = false;
 
 s.bind('clickNode', function(e) {
   angular.element.event.trigger({type:"show.person", person: e.data.node});
 });
 s.bind('overNode', function(e) {
   var ns = [], nodes = s.graph.nodes();
-  activeState.dropNodes();
+  if(!isShift)
+    activeState.dropNodes();
   activeState.dropEdges();
+  activeState.addNodes(e.data.node.id);
   activeState.setEdgesBy(function(edge){
-    if(edge.startColor == undefined)
-      edge.startColor = edge.color;
-    if(edge.source == e.data.node.id){
-      edge.color = '#BE1931';
-      return true;
-    } else
-      edge.color = edge.startColor;
-      return false;
+    return edge.source == e.data.node.id ? true : false ;
   });
   angular.element.event.trigger({type:"show.person.small", person: e.data.node});
   s.refresh({skipIndexation: true});
+});
+
+$(document).on('keydown', function(e){
+  if(e.keyCode == 16)
+    isShift = true;
+  if(e.keyCode == 27) {
+    activeState.dropNodes();
+    activeState.dropEdges();
+    s.refresh({skipIndexation: true});
+  }
+});
+$(document).on('keyup', function(e){
+  if(e.keyCode == 16)
+    isShift = false;
 });
 
 </script>
