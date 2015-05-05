@@ -1,0 +1,25 @@
+<div class="entity-zoom">
+  <div class="name">
+	<h1><%= @entity[:name]%></h1>
+  </div>
+  
+  
+  <% if @entity[:subType] %>
+  Categories:
+  <ul>
+  <% @entity[:subType].each do |subtype| %>
+	<li><%= subtype.underscore.humanize %></li>
+  <% end %>
+  </ul>
+  <% end %>
+  
+  Knowledge:
+  <ul>
+	<% @entity[:extended].each do |label, value| %>
+    <% next if value.to_sentence.length > 1024 %>
+	<li><%= label%>: <%= value.to_sentence %></li>
+  <% end %>
+  </ul>
+</div>
+
+

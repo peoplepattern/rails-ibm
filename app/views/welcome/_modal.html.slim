@@ -59,7 +59,7 @@ div(ng-app="personModal")
                   br(ng-if="$index % 4 ==3")
               div.tab-pane.fade(role="tabpanel" id="entities")
                 span(ng-repeat="entity in pmCtrl.entities")
-                  a(href="{{entity.website}}" target="_blank")
+                  a(href="/entity?id={{entity.key}}" target="_blank")
                     span.interest(style="{{'background-color: '+entity.color}}") {{entity.key}}
                   br(ng-if="$index % 4 == 3")
         .modal-footer

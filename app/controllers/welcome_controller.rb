@@ -44,4 +44,38 @@ class WelcomeController < ApplicationController
     posts = Post.find_by_unique_id(params[:id])
     render json: posts
   end
+
+  def entity
+    @entity = JSON.parse(HTTParty.get("http://watson.peoplepattern.com:9200/disambiguated/disambiguated/#{URI::escape(params[:id])}").body)['_source'].symbolize_keys
+    @entity[:extended] = {}
+    
+    if @entity[:dbpedia]
+      doc = Nokogiri::HTML(HTTParty.get(@entity[:dbpedia]))
+      url = doc.css('link[rel=alternate][type="text/plain"]').first['href']
+      
+      require 'rdf/ntriples'
+      graph = RDF::Graph.load(url)
+
+      graph.each_statement do |statement|
+        Rails.logger.info statement.predicate
+        
+        property = statement.predicate.to_s
+        if property =~ /http:\/\/dbpedia.org\//
+          label = property.gsub(/^.*\//, '').underscore.humanize
+        else
+          next
+        end
+
+        value = statement.object.to_s
+
+        if value =~ /http:\/\/dbpedia.org\/resource/
+          value = value.gsub('http://dbpedia.org/resource/', '').gsub('_', ' ')
+        end
+        
+        @entity[:extended][label] ||= []
+        @entity[:extended][label].push(value)
+      end
+    end
+    
+  end
 end
