@@ -72,8 +72,18 @@ class WelcomeController < ApplicationController
           value = value.gsub('http://dbpedia.org/resource/', '').gsub('_', ' ')
         end
         
+        if value =~ /\+02:00$/
+          value.gsub!(/\+02:00$/, '')
+        end
+        
+        next if value =~ URI::regexp
+
+        next if value == 'no'
+        
+        
         @entity[:extended][label] ||= []
         @entity[:extended][label].push(value)
+        @entity[:extended][label].uniq!
       end
     end
   end

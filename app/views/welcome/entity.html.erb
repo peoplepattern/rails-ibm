@@ -1,6 +1,12 @@
 <div class="entity-zoom">
   <div class="name">
-	<h1><%= @entity[:name]%></h1>
+	<h1>
+	  <% if @entity[:website] %>
+		<a href="<%=@entity[:website]%>"><%= @entity[:name]%></a>
+	  <% else %>
+		<%= @entity[:name]%>
+	  <% end %>
+	</h1>
   </div>
   
   
