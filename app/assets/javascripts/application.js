@@ -18,4 +18,7 @@
 
 //=require linkurious/sigma.require.js
 //=require linkurious/plugins/sigma.parsers.gexf.min.js
+//=require linkurious/plugins/sigma.parsers.json.min.js
 //=require linkurious/plugins/sigma.plugins.locate.min.js
+//=require linkurious/plugins/sigma.plugins.animate.min.js
+//=require linkurious/plugins/sigma.layout.forceAtlas2.min.js
