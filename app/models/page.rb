@@ -41,4 +41,25 @@ class Page
   def followers_count
     self.attributes['extensions.followers']
   end
+
+  def to_node
+    {
+      displayName: self.display_name,
+      label: self.display_name,
+      id: self.id,
+      size: Math.log(self.followers_count),
+      tid: self.id,
+      summary: self.summary,
+      image: {url: self.image_url},
+      handle: self.screen_name,
+      extensions: {
+        location: self.location,
+        favorites: self.favorites,
+        screenName: self.screen_name,
+        followers: self.followers_count,
+      },
+      objectType: "page",
+      url: self.url,
+    }
+  end
 end
