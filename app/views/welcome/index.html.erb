@@ -13,7 +13,6 @@ var $ = function (id) {
   return document.getElementById(id);
 };
 
-
  var g = {
    nodes: [],
    edges: []
@@ -23,35 +22,26 @@ var $ = function (id) {
  s = new sigma({
    graph: g,
    container: 'graph-container',
-   renderer: {
-	 container: document.getElementById('graph-container'),
-	 type: 'canvas'
-   },
-   settings: {
-	 minNodeSize: 8,
-	 maxNodeSize: 16
-   }
  });
  
-sigma.parsers.json(
+ sigma.parsers.json(
    '/data',
    s,
    function() {
 	 var nodes = s.graph.nodes();
 	 for (var i = 0; i < nodes.length; i++) {
-	   nodes[i].x = Math.random();
-	   nodes[i].y = Math.random();
+	   nodes[i].x = 100 * Math.cos(2 * i * Math.PI / nodes.length);
+	   nodes[i].y = 100 * Math.sin(2 * i * Math.PI / nodes.length);
 	   nodes[i].size = nodes[i].size;
 	 }
 
 	 s.refresh();
  
 	 sigma.layouts.startForceAtlas2(s, {
-	   worker: true,
+       worker: true,
 	   autoStop: true,
 	   background: true,
-	   scaleRatio: 10,
-	   gravity: 3,
+	   gravity: 0,
 	   easing: 'cubicInOut'
 	 });
  });
