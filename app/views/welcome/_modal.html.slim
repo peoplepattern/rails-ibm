@@ -9,8 +9,23 @@ div(ng-app="personModal")
             a(href="http://www.twitter.com/{{pmCtrl.person.handle}}" target="_blank") {{pmCtrl.person.displayName}}
         .modal-body
           .basicInfo
-            img(ng-src="{{pmCtrl.person.image.url | bigPic}}")
+            .picHolder
+              img(ng-src="{{pmCtrl.person.image.url | bigPic}}")
+              .favs()
+                p.caps.center-text.m-top() Favorites
+                p.center-text.bold() {{pmCtrl.person.extensions.favorites}}
+              .posts()
+                p.caps.center-text.m-top() Posts
+                p.center-text.bold() {{pmCtrl.person.extensions.posts}}
+              .followers()
+                p.caps.center-text.m-top() Followers
+                p.center-text.bold() {{pmCtrl.person.extensions.followers}}
             p.summary() {{pmCtrl.person.summary}}
+            p.location() 
+              span.glyphicon.glyphicon-map-marker(style="margin-right: 5px;")
+              | {{pmCtrl.person.extensions.location}}
+            p.url
+              a(href="{{pmCtrl.person.url}}") {{pmCtrl.person.url}}
           div.details(role="tabpanel")
             ul.nav.nav-tabs(role="tablist")
               li.active(role="presentation")
@@ -23,7 +38,7 @@ div(ng-app="personModal")
                   p.date() {{post.published}}
                   p() {{post.content}}
               div.tab-pane.fade(role="tabpanel" id="interests")
-                span.interest(ng-repeat="interest in pmCtrl.interests")
+                span.interest(ng-repeat="interest in pmCtrl.interests" style="{{'background-color: '+interest.color}}")
                   | {{interest.title}}
         .modal-footer
           button(type="button" class="btn btn-default" data-dismiss="modal") Close

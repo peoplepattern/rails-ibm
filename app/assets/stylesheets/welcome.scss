@@ -71,13 +71,23 @@ input[type=range] {
     .modal-body {
       .basicInfo {
         height: 250px;
-        img {
-          border-radius: 5px;
-          border: 1px solid #aaa;
-          height: 200px;
-          width: 200px;
+        .picHolder {
           margin-left: 14px;
+          margin-right: 14px;
           float: right;
+          width: 220px;
+          img {
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            height: 200px;
+            width: 200px;
+            margin-left: 13px;
+          }
+          .favs, .posts, .followers {
+            float: left;
+            width: 33%;
+            color: #8c9ca9;
+          }
         }
         p.summary {
           color: #555;
@@ -119,4 +129,17 @@ input[type=range] {
       }
     }
   }
+}
+
+.caps {
+  text-transform: uppercase;
+}
+.center-text {
+  text-align: center;
+}
+.bold {
+  font-weight: bold;
+}
+.m-top {
+  margin-top: 10px;
 }
