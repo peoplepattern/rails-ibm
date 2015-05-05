@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/posts' => 'welcome#posts'
   get '/entity' => 'welcome#entity'
   get '/population' => 'welcome#population'
+  post '/population' => 'welcome#population'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

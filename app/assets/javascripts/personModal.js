@@ -96,7 +96,8 @@
   function PopulationController($scope, $http){
     var vm = this;
     vm.show = false;
-    activate();
+    vm.getSet = getSet;
+    vm.clicked = clicked;
 
     function activate(){
       $http.get('population')
@@ -104,6 +105,31 @@
           vm.keywords = data.top_keywords;
           vm.entities = data.top_entities;
         });
+    }
+
+    function getSet(){
+      var ids = [], nodes = window.activeState.nodes();
+      for(var i=0; i< nodes.length; i++){
+        ids.push(nodes[i].id);
+      }
+      $http.post('population', {ids: ids})
+        .success(function(data){
+          vm.keywords = data.top_keywords;
+          vm.entities = data.top_entities;
+        });
+    }
+
+    function clicked() {
+      vm.show ? vm.show = false : vm.show = true;
+      if (vm.show == false) {
+        vm.keywords = [];
+        vm.entities = [];
+      } else {
+        if (window.activeState.nodes().length == 0)
+          activate();
+        else
+          getSet();
+      }
     }
   };
 

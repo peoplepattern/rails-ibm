@@ -1,6 +1,6 @@
 div(ng-app="personModal")
   div(ng-controller="PopulationController as pCtrl")
-    a.btn.btn-primary(id="population" href="#" ng-click="pCtrl.show ? pCtrl.show = fasle : pCtrl.show = true") Population
+    a.btn.btn-primary(id="population" href="#" ng-click="pCtrl.clicked()") Population
     ul.population-list(ng-show="pCtrl.show")
       h3 Top Keywords
       li(ng-repeat="keyword in pCtrl.keywords" ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral'}")
@@ -12,7 +12,7 @@ div(ng-app="personModal")
         span.float-right()
           | {{entity.doc_count}}
   .smallSummary(ng-controller="SmallSummaryController as ssCtrl" ng-show="ssCtrl.person.displayName != undefined")
-    img(ng-src="{{ssCtrl.person.image.url | bigPic}}")
+    img(ng-src="{{ssCtrl.person.img.url | bigPic}}")
     .bottomHalf
       h4.displayName() {{ssCtrl.person.displayName}}
       p.followersAndPosts() 
@@ -33,7 +33,7 @@ div(ng-app="personModal")
         .modal-body
           .basicInfo
             .picHolder
-              img(ng-src="{{pmCtrl.person.image.url | bigPic}}")
+              img(ng-src="{{pmCtrl.person.img.url | bigPic}}")
               .favs()
                 p.caps.center-text.m-top() Favorites
                 p.center-text.bold() {{pmCtrl.person.extensions.favorites}}

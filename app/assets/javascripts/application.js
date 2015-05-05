@@ -26,6 +26,19 @@
 //=require linkurious/plugins/sigma.plugins.activeState.min.js
 //=require linkurious/plugins/sigma.plugins.neighborhoods.min.js
 //=require linkurious/plugins/sigma.layout.forceAtlas2.min.js
+//=require linkurious/plugins/sigma.renderers.linkurious/settings.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.labels.def.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.hovers.def.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.def.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.cross.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.diamond.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.equilateral.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.square.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.star.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.def.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curve.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.arrow.js
+//=require linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curvedArrow.js
 
 function hsvToRgb(h, s, v) {
   var r, g, b;
