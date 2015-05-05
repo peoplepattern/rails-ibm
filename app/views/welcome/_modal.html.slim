@@ -8,7 +8,7 @@ div(ng-app="personModal")
         span.float-right() {{keyword.doc_count}}
       h3 Top Entities
       li(ng-repeat="entity in pCtrl.entities" ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral'}")
-        a(href="{{entity.website}}" target="_blank") {{entity.key}}
+        a(href="/entity?id={{entity.key}}" target="_blank") {{entity.key}}
         span.float-right()
           | {{entity.doc_count}}
   .smallSummary(ng-controller="SmallSummaryController as ssCtrl" ng-show="ssCtrl.person.displayName != undefined")
