@@ -174,8 +174,8 @@ input[type=range] {
   text-align: center;
   padding-top: 15px;
   img {
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     border:2px solid white;
     border-radius: 5px;
   }
