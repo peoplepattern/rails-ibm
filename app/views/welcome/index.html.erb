@@ -44,13 +44,11 @@
 	   nodes[i].x = 100 * Math.cos(2 * i * Math.PI / nodes.length);
 	   nodes[i].y = 100 * Math.sin(2 * i * Math.PI / nodes.length);
 	   nodes[i].size = nodes[i].size;
-	   nodes[i].color = '#C39DC7';
+	   nodes[i].color = '#0084B4';
      nodes[i].active = false;
 	 }
 
 	 for (var i = 0; i < s.graph.edges.length; i++) {
-	   s.graph.edges[i].color = '#444';
-	   s.graph.edges[i].hover_color = '#ccc';
 	   s.graph.edges[i].size = 3;
      s.graph.edges[i].active = false;
 	 }
@@ -80,7 +78,7 @@ s.bind('overNode', function(e) {
     if(edge.startColor == undefined)
       edge.startColor = edge.color;
     if(edge.source == e.data.node.id){
-      edge.color = 'blue';
+      edge.color = '#BE1931';
       return true;
     } else
       edge.color = edge.startColor;
