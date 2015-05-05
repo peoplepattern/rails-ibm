@@ -21,7 +21,7 @@
     activate();
 
     function activate(){
-      colorInterests();
+      color('interests');
       angular.element(document).on('show.person', function(e){ //show.person events must contain 'person' field with necessary sub-data
         $scope.$applyAsync(function(){
           vm.person = e.person;
@@ -31,25 +31,34 @@
             $http.get('posts?id='+e.person.tid)
               .success(function(data){
                 vm.posts = data.posts;
+                vm.keywords = data.top_keywords;
+                for(var i=0; i<vm.keywords.length; i++){
+                  if(vm.keywords[i].sentiment == 'positive')
+                    vm.keywords[i].color = '#87DDAB';
+                  else if (vm.keywords[i].sentiment == 'neutral')
+                    vm.keywords[i].color = '#ccc';
+                  else
+                    vm.keywords[i].color = '#D48A8A';
+                }
                 setTimeout(function(){angular.element('abbr.timeago').timeago();}, 500);
               });
           }
           if (e.interests != undefined) {
             vm.interests = interests;
-            colorInterests();
+            color('interests');
           }
         });
         angular.element('#personModal').modal('show');
       });
     }
 
-    function colorInterests(){
+    function color(name){
       var golden_ratio_conjugate = 0.618033988749895;
-      for ( var i=0; i<vm.interests.length; i++) {
+      for ( var i=0; i<vm[name].length; i++) {
          var h = Math.random();
          h += golden_ratio_conjugate;
          h = h % 1;
-         vm.interests[i].color = 'rgb('+hsvToRgb(h*360, 25, 80).join(',')+');';
+         vm[name][i].color = 'rgb('+hsvToRgb(h*360, 25, 80).join(',')+');';
       }
     }
   };

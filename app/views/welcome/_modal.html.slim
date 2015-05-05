@@ -40,6 +40,8 @@ div(ng-app="personModal")
               li.active(role="presentation")
                 a(href="#posts" aria-controls="posts" role="tab" data-toggle="tab") Posts
               li(role="presentation")
+                a(href="#keywords" aria-controls="keywords" role="tab" data-toggle="tab") Keywords
+              li(role="presentation")
                 a(href="#interests" aria-controls="interests" role="tab" data-toggle="tab") Interests
             div.tab-content
               div.tab-pane.fade.in.active(role="tabpanel" id="posts")
@@ -50,6 +52,11 @@ div(ng-app="personModal")
                     span.glyphicon.glyphicon-retweet(style="color: #ccd6dd; margin-right: 5px; width: 20px;") 
                     | {{post.extensions.twitter.retweet_count}}
                     span.taxonomy(ng-show="post.extensions.taxonomy.taxonomy[0]" title="{{post.extensions.taxonomy.taxonomy[0].score}}") {{post.extensions.taxonomy.taxonomy[0].label | taxonomy}}
+              div.tab-pane.fade(role="tabpanel" id="keywords")
+                span(ng-repeat="keyword in pmCtrl.keywords")
+                  span.interest(style="{{'background-color: '+keyword.color}}")
+                    | {{keyword.key}}
+                  br(ng-if="$index % 4 ==3")
               div.tab-pane.fade(role="tabpanel" id="interests")
                 span.interest(ng-repeat="interest in pmCtrl.interests" style="{{'background-color: '+interest.color}}")
                   | {{interest.title}}
