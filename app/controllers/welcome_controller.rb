@@ -20,8 +20,8 @@ class WelcomeController < ApplicationController
         target: friend.id,
         id: "#{watson.id}:#{friend.id}",
         type: 'arrow',
-        color: '#c7c39d',
-        hover_color: '#C7AE9D',
+        color: '#66757f',
+        hover_color: '#BE1931',
         size: 3
       })
       friend.friends.limit(100).each do |sub_friend|
@@ -30,8 +30,8 @@ class WelcomeController < ApplicationController
           target: friend.id,
           id: "#{friend.id}:#{sub_friend.id}",
           type: 'curvedArrow',
-          color: '#9dc7c3',
-          hover_color: '#C7AE9D',
+          color: '#8899a6',
+          hover_color: '#BE1931',
           size: 1
         }) if nodes.map(&:id).include? sub_friend.id
       end
@@ -76,6 +76,9 @@ class WelcomeController < ApplicationController
         @entity[:extended][label].push(value)
       end
     end
+  end
     
+  def population
+    render json: Post.aggs
   end
 end

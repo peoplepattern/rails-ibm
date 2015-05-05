@@ -10,6 +10,14 @@ class Post
     return self.parse_list(self.request(blob))
   end
 
+  def self.aggs()
+    blob = OPTIONS
+    blob[:body] = {query:{match_all: {}},sort: {published: {order: "desc"}}}
+    blob = self.apply_keywords_agg(blob)
+    blob = self.apply_entities_agg(blob)
+    return self.parse_list(self.request(blob))
+  end
+
   # sends a request blob hash to the elastic database and returns the parsed result
   def self.request(blob)
     blob[:body][:size] = 50 if blob[:body][:size].nil? # default to 100 objects come back

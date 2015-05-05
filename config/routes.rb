@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/data' => 'welcome#data'
   get '/posts' => 'welcome#posts'
   get '/entity' => 'welcome#entity'
-  
+  get '/population' => 'welcome#population'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

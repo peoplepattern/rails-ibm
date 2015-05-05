@@ -1,13 +1,26 @@
 div(ng-app="personModal")
+  div(ng-controller="PopulationController as pCtrl")
+    a.btn.btn-primary(id="population" href="#" ng-click="pCtrl.show ? pCtrl.show = fasle : pCtrl.show = true") Population
+    ul.population-list(ng-show="pCtrl.show")
+      h3 Top Keywords
+      li(ng-repeat="keyword in pCtrl.keywords" ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral'}")
+        | {{keyword.key}}
+        span.float-right() {{keyword.doc_count}}
+      h3 Top Entities
+      li(ng-repeat="entity in pCtrl.entities" ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral'}")
+        a(href="{{entity.website}}" target="_blank") {{entity.key}}
+        span.float-right()
+          | {{entity.doc_count}}
   .smallSummary(ng-controller="SmallSummaryController as ssCtrl" ng-show="ssCtrl.person.displayName != undefined")
     img(ng-src="{{ssCtrl.person.image.url | bigPic}}")
-    h4.displayName() {{ssCtrl.person.displayName}}
-    p.followersAndPosts() 
-      | {{ssCtrl.person.extensions.followers}} followers 
-      span.float-right() {{ssCtrl.person.extensions.posts}} posts
-    p.location() {{ssCtrl.person.location}}
-    p.url() 
-      a(href="{{ssCtrl.person.url}}") {{ssCtrl.person.url}}
+    .bottomHalf
+      h4.displayName() {{ssCtrl.person.displayName}}
+      p.followersAndPosts() 
+        | {{ssCtrl.person.extensions.followers}} followers 
+        span.float-right() {{ssCtrl.person.extensions.posts}} posts
+      p.location() {{ssCtrl.person.location}}
+      p.url() 
+        a(href="{{ssCtrl.person.url}}") {{ssCtrl.person.url}}
   .modal.fade(ng-controller="PersonModalController as pmCtrl" id="personModal" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true")
     .modal-dialog(ng-toggler)
       .modal-content
@@ -54,13 +67,13 @@ div(ng-app="personModal")
                     span.taxonomy(ng-show="post.extensions.taxonomy.taxonomy[0]" title="{{post.extensions.taxonomy.taxonomy[0].score}}") {{post.extensions.taxonomy.taxonomy[0].label | taxonomy}}
               div.tab-pane.fade(role="tabpanel" id="keywords")
                 span(ng-repeat="keyword in pmCtrl.keywords")
-                  span.interest(style="{{'background-color: '+keyword.color}}")
+                  span.interest(ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral'}")
                     | {{keyword.key}}
                   br(ng-if="$index % 4 ==3")
               div.tab-pane.fade(role="tabpanel" id="entities")
                 span(ng-repeat="entity in pmCtrl.entities")
                   a(href="/entity?id={{entity.key}}" target="_blank")
-                    span.interest(style="{{'background-color: '+entity.color}}") {{entity.key}}
+                    span.interest(ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral'}") {{entity.key}}
                   br(ng-if="$index % 4 == 3")
         .modal-footer
           button(type="button" class="btn btn-default" data-dismiss="modal") Close

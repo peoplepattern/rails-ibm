@@ -3,6 +3,7 @@
   angular.module('personModal', ['ngSanitize'])
     .controller('PersonModalController', PersonModalController)
     .controller('SmallSummaryController', SmallSummaryController)
+    .controller('PopulationController', PopulationController)
     .filter('bigPic', bigPic)
     .filter('taxonomy', taxonomy)
     .filter('links', links);
@@ -87,6 +88,22 @@
           vm.person = {};
         });
       });
+    }
+  };
+
+  PopulationController.$inject = ['$scope', '$http'];
+
+  function PopulationController($scope, $http){
+    var vm = this;
+    vm.show = false;
+    activate();
+
+    function activate(){
+      $http.get('population')
+        .success(function(data){
+          vm.keywords = data.top_keywords;
+          vm.entities = data.top_entities;
+        });
     }
   };
 
