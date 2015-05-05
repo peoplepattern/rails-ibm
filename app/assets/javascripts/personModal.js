@@ -32,14 +32,9 @@
               .success(function(data){
                 vm.posts = data.posts;
                 vm.keywords = data.top_keywords;
-                for(var i=0; i<vm.keywords.length; i++){
-                  if(vm.keywords[i].sentiment == 'positive')
-                    vm.keywords[i].color = '#87DDAB';
-                  else if (vm.keywords[i].sentiment == 'neutral')
-                    vm.keywords[i].color = '#ccc';
-                  else
-                    vm.keywords[i].color = '#D48A8A';
-                }
+                sentimentColor('keywords');
+                vm.entities = data.top_entities;
+                sentimentColor('entities');
                 setTimeout(function(){angular.element('abbr.timeago').timeago();}, 500);
               });
           }
@@ -59,6 +54,17 @@
          h += golden_ratio_conjugate;
          h = h % 1;
          vm[name][i].color = 'rgb('+hsvToRgb(h*360, 25, 80).join(',')+');';
+      }
+    }
+    
+    function sentimentColor(name){
+      for(var i=0; i<vm[name].length; i++){
+        if(vm[name][i].sentiment == 'positive')
+          vm[name][i].color = '#87DDAB';
+        else if (vm.keywords[i].sentiment == 'neutral')
+          vm[name][i].color = '#ccc';
+        else
+          vm[name][i].color = '#D48A8A';
       }
     }
   };

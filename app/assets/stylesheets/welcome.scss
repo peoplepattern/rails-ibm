@@ -117,13 +117,21 @@ input[type=range] {
               }
             }
           }
-          .interest, .taxonomy {
+          a:hover {
+            text-decoration: none;
+          }
+          .interest, .taxonomy, a .interest {
             padding: 4px 6px;
             margin-left: 5px;
             background-color: #ACD1EB;
             border-radius: 3px;
             border: 1px solid #174566;
             line-height: 3.3em;
+            color: black;
+            &:hover {
+              color: #337ab7;
+              text-decoration: none;
+            }
           }
         }
       }

@@ -12,19 +12,19 @@ class WelcomeController < ApplicationController
     
     data[:nodes].push(watson.to_node)
     
-    nodes = watson.friends.limit(50)
+    nodes = watson.friends.limit(100)
     nodes.each do |friend|
       data[:nodes].push(friend.to_node)
       data[:edges].push({
-        source: friend.id,
-        target: watson.id,
+        source: watson.id,
+        target: friend.id,
         id: "#{watson.id}:#{friend.id}",
         type: 'arrow',
         color: '#c7c39d',
         hover_color: '#C7AE9D',
         size: 3
       })
-      friend.friends.limit(10).each do |sub_friend|
+      friend.friends.limit(100).each do |sub_friend|
         data[:edges].push({
           source: sub_friend.id,
           target: friend.id,
