@@ -1,12 +1,13 @@
-.modal.fade(id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
-          span(aria-hidden="true") &times;
-        h4.modal-title(id="myModalLabel") Modal title
-      .modal-body
-        Content
-      .modal-footer
-        button(type="button" class="btn btn-default" data-dismiss="modal") Close
-        button(type="button" class="btn btn-primary") Save changes
+div(ng-app="personModal")
+  .modal.fade(ng-controller="PersonModalController as pmCtrl" id="personModal" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true")
+    .modal-dialog(ng-toggler)
+      .modal-content
+        .modal-header
+          button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+          h4.modal-title(id="personModalLabel") {{pmCtrl.person.name}}
+        .modal-body
+          Content
+        .modal-footer
+          button(type="button" class="btn btn-default" data-dismiss="modal") Close
+          button(type="button" class="btn btn-primary") Save changes

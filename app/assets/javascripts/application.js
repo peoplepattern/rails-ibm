@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require ./angular.min
 //= require_tree .
 
 //=require linkurious/sigma.require.js
