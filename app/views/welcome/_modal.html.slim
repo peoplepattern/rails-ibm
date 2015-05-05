@@ -8,7 +8,7 @@ div(ng-app="personModal")
           h4.modal-title(id="personModalLabel") 
             a(href="http://www.twitter.com/{{pmCtrl.person.handle}}" target="_blank") {{pmCtrl.person.displayName}}
         .modal-body
-          img(ng-src="{{pmCtrl.person.image.url}}")
+          img(ng-src="{{pmCtrl.person.image.url | bigPic}}")
           p() {{pmCtrl.person.summary}}
         .modal-footer
           button(type="button" class="btn btn-default" data-dismiss="modal") Close

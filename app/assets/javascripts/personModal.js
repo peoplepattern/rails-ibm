@@ -18,7 +18,7 @@ $(function(){ // jquery on ready
 (function(){
   angular.module('personModal', [])
     .controller('PersonModalController', PersonModalController)
-    .directive('ngToggler', ngToggler);
+    .filter('bigPic', bigPic);
 
   PersonModalController.$inject = ['$scope'];
 
@@ -37,11 +37,11 @@ $(function(){ // jquery on ready
     }
   };
 
-  ngToggler.$inject = [];
+  bigPic.$inject = [];
 
-  function ngToggler(){
-    return function ($scope, el, attrs){
-    
+  function bigPic(){
+    return function(val){
+      return val.replace(/_normal\.(jpg|jpeg)$/, "_200x200.$1")
     };
   };
 
