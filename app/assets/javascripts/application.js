@@ -23,6 +23,8 @@
 //=require linkurious/plugins/sigma.parsers.json.min.js
 //=require linkurious/plugins/sigma.plugins.locate.min.js
 //=require linkurious/plugins/sigma.plugins.animate.min.js
+//=require linkurious/plugins/sigma.plugins.activeState.min.js
+//=require linkurious/plugins/sigma.plugins.neighborhoods.min.js
 //=require linkurious/plugins/sigma.layout.forceAtlas2.min.js
 
 function hsvToRgb(h, s, v) {
