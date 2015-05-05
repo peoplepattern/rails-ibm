@@ -66,15 +66,18 @@ div(ng-app="personModal")
                     | {{post.extensions.twitter.retweet_count}}
                     span.taxonomy(ng-show="post.extensions.taxonomy.taxonomy[0]" title="{{post.extensions.taxonomy.taxonomy[0].score}}") {{post.extensions.taxonomy.taxonomy[0].label | taxonomy}}
               div.tab-pane.fade(role="tabpanel" id="keywords")
-                span(ng-repeat="keyword in pmCtrl.keywords")
-                  span.interest(ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral'}")
+                div(ng-repeat="keyword in pmCtrl.keywords")
+                  span.interest(ng-class="{positive: keyword.sentiment == 'positive', negative: keyword.sentiment == 'negative', neutral: keyword.sentiment == 'neutral', 'float-left': $even, 'float-right': $odd}")
                     | {{keyword.key}}
-                  br(ng-if="$index % 4 ==3")
+                    span.float-right() {{keyword.doc_count}}
+                .clearfix
               div.tab-pane.fade(role="tabpanel" id="entities")
-                span(ng-repeat="entity in pmCtrl.entities")
+                div(ng-repeat="entity in pmCtrl.entities")
                   a(href="/entity?id={{entity.key}}" target="_blank")
-                    span.interest(ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral'}") {{entity.key}}
-                  br(ng-if="$index % 4 == 3")
+                    span.interest(ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral', 'float-left': $even, 'float-right': $odd}")
+                      | {{entity.key}}
+                      span.float-right() {{entity.doc_count}}
+                .clearfix
         .modal-footer
           button(type="button" class="btn btn-default" data-dismiss="modal") Close
           / button(type="button" class="btn btn-primary") Save changes

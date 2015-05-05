@@ -125,10 +125,20 @@ input[type=range] {
             padding: 4px 6px;
             margin-left: 5px;
             background-color: #ACD1EB;
-            border-radius: 3px;
-            border: 1px solid #174566;
-            line-height: 3.3em;
+            border-radius: 5px;
+//            border: 2px solid white;//#174566;
             color: black;
+            width: 44%;
+            margin-top: 4px;
+            margin-right: 9px;
+            span.float-right {
+              color: #8899a6;
+              font-weight: bold;
+              font-size: 12px; 
+              span.glyphicon {
+                margin-right: 4px;
+              }
+            }
           }
           a .interest {
             &:hover {
