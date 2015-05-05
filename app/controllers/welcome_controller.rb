@@ -4,56 +4,22 @@ class WelcomeController < ApplicationController
 
   def data
     data = {
-      edges: [
-              {
-                source: 1,
-                target: 2,
-                id: 3,
-              },
-              {
-                source: 1,
-                target: 3,
-                id: 4,
-              },
-              {
-                source: 1,
-                target: 4,
-                id: 6,
-              },
-              {
-                source: 3,
-                target: 4,
-                id: 7,
-              },
-             ],
       nodes: [
               {
-                name: 'test',
-                label: 'test',
-                id: 1,
+                label: 'IBM Watson',
+                id: 'watson',
                 size: 1,
               },
-              {
-                name: 'test2',
-                label: 'test2',
-                id: 2,
-                size: 2,
-              },
-              {
-                name: 'test3',
-                label: 'test3',
-                id: 3,
-                size: 3,
-              },
-              {
-                name: 'test4',
-                label: 'test4',
-                id: 4,
-                size: 4,
-              },
+             ],
+      edges: [
              ],
     }
     
+    20.times do |i|
+      data[:nodes].push({label: "Follower #{i}", id: i, size: 1})
+      data[:edges].push({source: 'watson', target: i, id: i})
+    end
+
     render json: data
   end
 end
