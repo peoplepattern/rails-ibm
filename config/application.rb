@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'neo4j/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,5 +23,9 @@ module RailsIbm
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.generators { |g| g.orm :neo4j }
+    config.neo4j.session_type = :server_db
+    config.neo4j.session_path = 'http://watson.peoplepattern.com:7474'
   end
 end

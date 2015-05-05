@@ -44,3 +44,7 @@ group :development, :test do
 end
 
 gem 'slim' #for templating
+gem 'neo4j'
+
+
+
