@@ -3,8 +3,11 @@
 </div>
 <script>
 /**
- * This is an example on how to use sigma locate plugin on a real-world graph.
+ * DOM utility function
  */
+var $ = function (id) {
+  return document.getElementById(id);
+};
 
  var g = {
    nodes: [],
@@ -100,3 +103,5 @@ $(document).on('keyup', function(e){
 });
 
 </script>
+
+<%= render partial: 'welcome/modal' %>

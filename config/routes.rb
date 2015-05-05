@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get '/data' => 'welcome#data'
   get '/posts' => 'welcome#posts'
+  get '/entity' => 'welcome#entity'
   get '/population' => 'welcome#population'
   post '/population' => 'welcome#population'
 

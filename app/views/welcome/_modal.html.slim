@@ -29,6 +29,7 @@ div(ng-app="personModal")
             span(aria-hidden="true") &times;
           h3.modal-title(id="personModalLabel") 
             a(href="http://www.twitter.com/{{pmCtrl.person.handle}}" target="_blank") {{pmCtrl.person.displayName}}
+            span(class="label label-success" ng-show="pmCtrl.person.influence != 0") {{pmCtrl.person.influence}}
         .modal-body
           .basicInfo
             .picHolder
@@ -73,7 +74,7 @@ div(ng-app="personModal")
                 .clearfix
               div.tab-pane.fade(role="tabpanel" id="entities")
                 div(ng-repeat="entity in pmCtrl.entities")
-                  a(href="{{entity.website}}" target="_blank")
+                  a(href="/entity?id={{entity.key}}" target="_blank")
                     span.interest(ng-class="{positive: entity.sentiment == 'positive', negative: entity.sentiment == 'negative', neutral: entity.sentiment == 'neutral', 'float-left': $even, 'float-right': $odd}")
                       | {{entity.key}}
                       span.float-right() {{entity.doc_count}}
