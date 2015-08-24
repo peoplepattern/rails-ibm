@@ -4,7 +4,7 @@ Angular User Interface and Rails API built by People Pattern team during Watson 
 
 # License
 
-[LICENSE.md](LICENSE.md "LICENSE.md")
+[LICENSE](LICENSE "LICENSE")
 
 ## Third Party License
 
